@@ -45,9 +45,7 @@ object AppRunner {
 
     val web = new WebRoute(service)
 
-    val routes = handleExceptions(exceptionHandler) {
-      web.entityRouts ~ web.stateRouts
-    }
+    val routes = web.routes
 
     val host = system.settings.config.getString("api.host")
     val port = system.settings.config.getInt("api.port")

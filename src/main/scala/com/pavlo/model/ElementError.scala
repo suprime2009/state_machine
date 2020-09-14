@@ -22,4 +22,4 @@ case class EntityAlreadyExists(name: String)
   extends ValidationError(s"Entity with name $name already exists.")
 
 case object StateInvalidRequest
-  extends ValidationError("State from/to cannot point to the same state")
+  extends ValidationError("You can't create state with transition to itself.")
