@@ -6,15 +6,17 @@ package com.pavlo.web
 
 import akka.http.scaladsl.server.Directives.{complete, path}
 import com.pavlo.service.Service
-import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport._
 import com.pavlo.web.ExceptionHandlerDirective._
+import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport._
 
 import scala.concurrent.ExecutionContext
 
 class WebRoute(service: Service)(implicit ec: ExecutionContext) extends Codecs {
 
-  val routes = handleExceptions(exceptionHandler) {
-    entityRouts ~ stateRouts
+  val routes = handleRejections(rejectionHandler) {
+    handleExceptions(exceptionHandler) {
+      entityRouts ~ stateRouts
+    }
   }
 
   val entityRouts = path("entity") {

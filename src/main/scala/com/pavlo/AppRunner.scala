@@ -10,7 +10,6 @@ import akka.stream.ActorMaterializer
 import com.pavlo.db.Repository
 import com.pavlo.service.Service
 import com.pavlo.web.WebRoute
-import com.pavlo.web.ExceptionHandlerDirective._
 import org.flywaydb.core.Flyway
 import slick.basic.DatabaseConfig
 import slick.jdbc.JdbcProfile

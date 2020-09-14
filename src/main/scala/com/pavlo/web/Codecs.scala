@@ -8,7 +8,6 @@ import com.pavlo.model.{ChangeStateResponse, Entity, State}
 import io.circe.Encoder
 import spray.json.DefaultJsonProtocol._
 import spray.json.RootJsonFormat
-import spray.json._
 
 trait Codecs {
 
@@ -21,12 +20,6 @@ trait Codecs {
   implicit val saveEntityDecode: RootJsonFormat[SaveEntityRequest] = jsonFormat1(
     SaveEntityRequest.apply
   )
-
-  implicit val changeStateResponseDecode: RootJsonFormat[ChangeStateResponse] = jsonFormat3(
-    ChangeStateResponse.apply
-  )
-
-
 
   implicit val saveEntityEncode: Encoder[SaveEntityRequest] =
     Encoder.forProduct1("name")(p => p.name)
