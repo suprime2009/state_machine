@@ -1,10 +1,6 @@
-/*
- * For some reason docker:publishLocal fails due to missing license
- */
-
 package com.pavlo.web
 
-import akka.http.scaladsl.server.Directives.{complete, path}
+import akka.http.scaladsl.server.Directives.{ complete, path }
 import com.pavlo.service.Service
 import com.pavlo.web.ExceptionHandlerDirective._
 import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport._

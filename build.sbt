@@ -9,6 +9,7 @@ lazy val machine =
     .configs(IntegrationTest)
     .settings(settings)
     .settings(
+      organization := "com.pavlo",
       name := "machine",
       dockerSettings,
       addCommandAlias("docker", ";machine/docker"),
@@ -99,7 +100,6 @@ lazy val library =
     val testContainersScala = "com.dimafeng" %% "testcontainers-scala" % Version.testContainersScalaVersion excludeAll ExclusionRule(
       organization = "org.jetbrains"
     )
-
     val flywayCore = "org.flywaydb" % "flyway-core" % Version.flyway
 
     val scalaLogging = "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2"
@@ -123,7 +123,6 @@ lazy val commonSettings =
     version := sys.env.getOrElse("VERSION", "0.1.0"),
     scalaVersion := "2.12.10",
     crossScalaVersions := Seq(scalaVersion.value, "2.13.1"),
-    organization := "com.pavlo",
     organizationName := "Pavlo Kravets",
     startYear := Some(2020),
     headerLicense := Some(HeaderLicense.Custom(licenseText)),

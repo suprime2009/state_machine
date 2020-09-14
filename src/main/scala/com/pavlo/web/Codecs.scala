@@ -1,10 +1,6 @@
-/*
- * For some reason docker:publishLocal fails due to missing license
- */
-
 package com.pavlo.web
 
-import com.pavlo.model.{ChangeStateResponse, Entity, State}
+import com.pavlo.model.{ ChangeStateResponse, Entity, State }
 import io.circe.Encoder
 import spray.json.DefaultJsonProtocol._
 import spray.json.RootJsonFormat

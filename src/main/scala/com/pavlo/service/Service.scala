@@ -1,14 +1,10 @@
-/*
- * For some reason docker:publishLocal fails due to missing license
- */
-
 package com.pavlo.service
 
 import cats.data.EitherT
 import cats.implicits._
-import com.pavlo.db.{DbEntity, DbOperation, DbState, Repository}
+import com.pavlo.db.{ DbEntity, DbOperation, DbState, Repository }
 import com.pavlo.model._
-import com.pavlo.web.{ChangeStateMessage, SaveEntityRequest, UpdateStateRequest}
+import com.pavlo.web.{ ChangeStateMessage, SaveEntityRequest, UpdateStateRequest }
 import slick.basic.DatabaseConfig
 import slick.jdbc.JdbcProfile
 
@@ -38,7 +34,10 @@ class Service(repository: Repository)(val dbConfig: DatabaseConfig[JdbcProfile])
       _ <- EitherT.right[ElementError](repository.loadEntityByNameAction(request.name).reject {
         case dbEntity if dbEntity.isDefined => EntityAlreadyExists(request.name)
       })
-      dbState <- EitherT.fromOptionF(repository.loadStateByNameAction("init"), StateNotFound("init"))
+      dbState <- EitherT.fromOptionF(
+        repository.loadStateByNameAction("init"),
+        StateNotFound("init")
+      )
       dbEntity <- EitherT.right[ElementError](
         repository.saveEntity(DbEntity(0, request.name, dbState.id))
       )
