@@ -1,0 +1,26 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:8.0.18
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./machine/src/main/resources/sql:/docker-entrypoint-initdb.d/
+    ports:
+      - 3306:3306
+
+#  machine:
+#    image: com.pavlo/machine:${VERSION}
+#    depends_on:
+#      - mysql
+#    ports:
+#      - 8080:8080
+#    environment:
+#      APP_WRITE_PORT: 8080
+#      DB_USER: ${DB_USER}
+#      DB_PASSWORD: ${DB_PASSWORD}
+#      DB_NAME: ${DB_NAME}
+#      DB_URL: ${DB_URL}
